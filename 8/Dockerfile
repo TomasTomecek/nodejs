@@ -53,7 +53,7 @@ ENV HOME_APP_ROOT=/opt/app-root \
 
 # create home directory and system user with UID 1001 GID 0 and default name
 # set user home directory to $HOME_APP_ROOT
- RUN mkdir -p ${HOME_APP_ROOT}
+RUN mkdir -p ${HOME_APP_ROOT}
 
 # EXPOSE instruction exposes port from container to host.
 # Specify it during `docker run` as parameter: "-p <host_port>:<container_port>"
