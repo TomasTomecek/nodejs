@@ -1,6 +1,0 @@
-[nodejs]
-name=nodejs
-baseurl=https://kojipkgs.fedoraproject.org/compose/latest-Fedora-Modular-Rawhide/compose/Server/x86_64/os/
-enabled=0
-gpgcheck=false
-modules=1
