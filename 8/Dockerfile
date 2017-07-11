@@ -1,4 +1,4 @@
-FROM baseruntime/baseruntime:latest
+FROM modularitycontainers/boltron-preview:latest
 # Description
 # Environment:
 #  * $HOME_APP_ROOT - Root directory of application
@@ -11,11 +11,9 @@ FROM baseruntime/baseruntime:latest
 
 LABEL MAINTAINER Rado Pitonak <rpitonak@redhat.com>
 
-COPY repos/* /etc/yum.repos.d/
-
-RUN microdnf --nodocs --enablerepo nodejs install nodejs npm && \
-    microdnf --nodocs --enablerepo fedora install findutils tar && \
-    microdnf clean all
+RUN dnf install -y --nodocs nodejs-8 && \
+    dnf install -y --rpm --nodocs findutils tar && \
+    dnf clean all
 
 ENV NAME=nodejs \
     VERSION=0 \
