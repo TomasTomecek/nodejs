@@ -12,12 +12,12 @@ Image for building Node.js application as reproducible Docker image using source
 
 To pull the nodejs container run:
 
-    # docker pull modularitycontainers/nodejs:8
+    # docker pull modularitycontainers/nodejs:{{ node_version }}
 
 To build your Node.js application use run:
 
 
-    # s2i build <SOURCE-REPOSITORY> modularitycontainers/nodejs:8 <NAME-OF-APP>
+    # s2i build <SOURCE-REPOSITORY> modularitycontainers/nodejs:{{ node_version }} <NAME-OF-APP>
 
 
 To run your application in docker container:
@@ -76,7 +76,7 @@ To run the container in development mode with a debug port of 5454, run
 
 To build your application with using of npm proxy.
 
-    # s2i build ./test/test-app modularitycontainers/nodejs:8 my-app --env HTTP_PROXY=url
+    # s2i build ./test/test-app modularitycontainers/nodejs:{{ node_version }} my-app --env HTTP_PROXY=url
 
 # SECURITY IMPLICATIONS
 -d

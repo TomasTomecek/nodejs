@@ -1,25 +1,26 @@
-.PHONY: build run test build-6 build-8 run-6 run-8 test-6 test-8
+.PHONY: all doc build list-targets render clean test
 
-build: build-6 build-8
+CONFIGURATION := nodejs-6
+CONFIGURATION_IMAGE_NAME := $(shell dfe expanded-value $(CONFIGURATION) "image_name")
 
-run: run-6 # run-8
+all: render doc build test
 
-test: test-6 test-8
+list-targets:
+	dfe list-configs
 
-build-6:
-	cd ./6 && make build
+render:
+	dfe render $(CONFIGURATION)
 
-build-8:
-	cd ./8 && make build
+build:
+	docker build --tag=$(CONFIGURATION_IMAGE_NAME) -f Dockerfile.${CONFIGURATION} .
 
-run-6:
-	cd ./6 && make run
+doc:
+	go-md2man -in=files/help.md.${CONFIGURATION} -out=./root/help.1
 
-run-8: build-8
-	cd ./8 && make run
+clean:
+	rm -f Dockerfile.*
+	rm -f files/help.md.*
+	rm -rf root
 
-test-6:
-	cd ./6 && make test
-
-test-8:
-	cd ./8 && make test
+test:
+	IMAGE_NAME=$(CONFIGURATION_IMAGE_NAME) cd test && ./run
